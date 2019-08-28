@@ -1,2 +1,3 @@
-# theocraticwall
-Theocratic Wall for Mobile
+# Theocratic Wall
+
+Theocratic Wall for Mobile to handle the events.
