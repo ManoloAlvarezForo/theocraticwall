@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {fontSize: 65, color: '#FF006E', fontFamily: 'VINCHAND'},
+  text: {fontSize: 65, color: '#FF006E'},
   body: {backgroundColor: '#292C2F'},
 });
 

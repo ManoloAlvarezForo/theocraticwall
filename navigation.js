@@ -6,7 +6,7 @@ import {
 
 // Screens.
 import AuthLoadingScreen from './app/components/Authentication/AuthLoadingScreen';
-import DrawerNavigator from './app/screens/Navigation/DrawerNavigator/DrawerNavigator';
+// import DrawerNavigator from './app/screens/Navigation/DrawerNavigator/DrawerNavigator';
 import BottomTabNavigator from './app/screens/Navigation/BottomTabNavigator/BottomTabNavigator';
 
 import LoginScreen from './app/components/Authentication/Login';

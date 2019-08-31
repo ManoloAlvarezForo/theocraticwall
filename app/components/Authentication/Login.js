@@ -49,7 +49,6 @@ const Login = ({navigatation}) => {
               style={{
                 fontSize: 65,
                 color: '#FF006E',
-                fontFamily: 'VINCHAND',
               }}>
               Kisses
             </Text>
