@@ -26,7 +26,7 @@ export default class CustomInput extends BaseInput {
       changeColor: INACTIVE_COLOR,
       inputBorderWidth: NO_FOCUS_BORDER_WIDTH,
       textColor: this.props.dark ? LIGHT : DARK,
-      typeColor: this.props.dark ? DARK : LIGHT,
+      typeColor: this.props.labelBackgroundColor,
     });
   }
   static propTypes = {
@@ -58,7 +58,7 @@ export default class CustomInput extends BaseInput {
     return (
       <View
         style={[containerStyle, styles.mainContent]}
-        onLayout={this._onLayout}>
+        onLayout={this.onLayout}>
         <TouchableWithoutFeedback onPress={this.focus}>
           <Animated.View
             style={[
@@ -128,20 +128,20 @@ export default class CustomInput extends BaseInput {
             },
           ]}
           value={value}
-          onBlur={this._firstOnBlur}
-          onChange={this._onChange}
-          onFocus={this._firstOnFocus}
+          onBlur={this.firstOnBlur}
+          onChange={this.onChange}
+          onFocus={this.firstOnFocus}
         />
       </View>
     );
   }
 
-  _firstOnFocus = () => {
-    this._onFocusSetState();
-    this._onFocus();
+  firstOnFocus = () => {
+    this.onFocusSetState();
+    this.onFocus();
   };
 
-  _onFocusSetState = () => {
+  onFocusSetState = () => {
     this.setState({
       changeColor: this.props.customBorderColor,
       inputBorderWidth: FOCUS_BORDER_WIDTH,
@@ -149,33 +149,30 @@ export default class CustomInput extends BaseInput {
     });
   };
 
-  _setColorType = () => {
+  setColorType = () => {
     let response = '';
 
     if (!this.props.dark) {
       response = DEFAULT_TEXT_COLOR;
-      console.log('none');
     }
 
     if (this.props.dark) {
       response = DARK;
-      console.log('DARK');
     }
 
     if (!this.props.dark) {
       response = LIGHT;
-      console.log('LIGHT');
     }
 
     return response;
   };
 
-  _firstOnBlur = () => {
-    this._onBlurSetState();
-    this._onBlur();
+  firstOnBlur = () => {
+    this.onBlurSetState();
+    this.onBlur();
   };
 
-  _onBlurSetState = () => {
+  onBlurSetState = () => {
     this.setState({
       changeColor: INACTIVE_COLOR,
       inputBorderWidth: NO_FOCUS_BORDER_WIDTH,
@@ -202,7 +199,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   textInput: {
-    borderRadius: 50,
+    borderRadius: 5,
     // borderWidth: 1,
     color: 'white',
     fontSize: 16,

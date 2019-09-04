@@ -13,7 +13,7 @@ import {HttpLink} from 'apollo-link-http';
 import {ApolloProvider} from '@apollo/react-hooks';
 import {setContext} from 'apollo-link-context';
 import {getToken} from './app/utils/authentication';
-import Navigation from './navigation';
+import Navigation from './app/screens/Navigation/Navigation';
 
 const httpLink = new HttpLink({uri: 'http://192.168.88.30:4000/graphql'});
 // Uncomment avobe code to localhost connection.
