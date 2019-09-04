@@ -1,6 +1,7 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, View, Text, StyleSheet} from 'react-native';
-import {DrawerItems} from 'react-navigation';
+import {ScrollView, View, Text, StyleSheet} from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
+import {DrawerNavigatorItems} from 'react-navigation-drawer';
 
 const CustomDrawerContentComponent = props => (
   <SafeAreaView style={styles.container}>
@@ -8,7 +9,7 @@ const CustomDrawerContentComponent = props => (
       <Text style={styles.text}>Kisses</Text>
     </View>
     <ScrollView style={styles.body}>
-      <DrawerItems {...props} />
+      <DrawerNavigatorItems {...props} />
     </ScrollView>
   </SafeAreaView>
 );

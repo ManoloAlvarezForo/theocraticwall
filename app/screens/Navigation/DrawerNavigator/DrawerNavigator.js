@@ -1,13 +1,15 @@
-import HomeScreen from '../../../components/Home/Home';
+import Home from '../../../components/Home/Home';
+import Events from '../../../components/Events/Events';
 import SideBar from '../Sidebar/Sidebar';
-import {createDrawerNavigator} from 'react-navigation';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 import {Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    Inicio: {screen: HomeScreen},
+    Inicio: {screen: Home},
+    Eventos: {screen: Events},
   },
   {
     initialRouteName: 'Inicio',

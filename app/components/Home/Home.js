@@ -1,12 +1,21 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
+import {Content, Text} from 'native-base';
+import NavigationWrapper from '../Navigation/NavigationWrapper';
+import Icon from 'react-native-vector-icons/Ionicons';
+Icon.loadFont();
 
-export default class Home extends Component {
-  render() {
-    return (
-      <View>
-        <Text> Welcome to Home Screen View</Text>
-      </View>
-    );
-  }
-}
+const HomeContent = () => {
+  return (
+    <Content padder>
+      <Text>Bienvenido a Theocratic Wall!</Text>
+    </Content>
+  );
+};
+
+const Home = () => {
+  return (
+    <NavigationWrapper defaultTitle="Theocratic Wall" constent={HomeContent} />
+  );
+};
+
+export default Home;

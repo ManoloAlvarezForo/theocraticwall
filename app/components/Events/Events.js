@@ -1,12 +1,24 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
+import NavigationWrapper from '../Navigation/NavigationWrapper';
+import Agenda from './Agenda';
+import moment from 'moment';
+import Icon from 'react-native-vector-icons/Ionicons';
+Icon.loadFont();
+const now = moment();
 
-export default class Events extends Component {
-  render() {
-    return (
-      <View>
-        <Text> Events Component </Text>
-      </View>
-    );
-  }
-}
+const EventsContent = ({setTitle}) => {
+  return (
+    <Agenda setMonthTitle={setTitle} currentDate={now.format('YYYY-MM-DD')} />
+  );
+};
+
+const Events = () => {
+  return (
+    <NavigationWrapper
+      defaultTitle={now.format('MMMM YYYY')}
+      constent={EventsContent}
+    />
+  );
+};
+
+export default Events;
