@@ -1,7 +1,12 @@
+/* eslint-disable no-alert */
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Agenda} from 'react-native-calendars';
+import CustomTheme from '../../utils/Theme/Theme';
 import moment from 'moment';
+import {Text} from 'native-base';
+import Event from './Event';
 
 export default class AgendaScreen extends Component {
   constructor(props) {
@@ -47,17 +52,17 @@ export default class AgendaScreen extends Component {
         // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
         //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
         theme={{
-          calendarBackground: '#414755',
-          agendaKnobColor: '#e91e63',
-          agendaDayTextColor: '#414755',
-          agendaDayNumColor: '#414755',
-          agendaTodayColor: '#e91e63',
+          calendarBackground: CustomTheme.paper,
+          agendaKnobColor: CustomTheme.primary,
+          agendaDayTextColor: CustomTheme.secondPaper,
+          agendaDayNumColor: CustomTheme.secondPaper,
+          agendaTodayColor: CustomTheme.primary,
           textDisabledColor: '#bdbdbd',
-          dayTextColor: '#FFFFFF',
-          monthTextColor: '#FFFFFF',
-          indicatorColor: '#e91e63',
-          selectedDayBackgroundColor: '#e91e63',
-          selectedDayTextColor: '#ffffff',
+          dayTextColor: CustomTheme.textColor,
+          monthTextColor: CustomTheme.textColor,
+          indicatorColor: CustomTheme.primary,
+          selectedDayBackgroundColor: CustomTheme.primary,
+          selectedDayTextColor: CustomTheme.secondTextColor,
         }}
       />
     );
@@ -92,11 +97,7 @@ export default class AgendaScreen extends Component {
   }
 
   renderItem(item) {
-    return (
-      <View style={[styles.item, {height: item.height}]}>
-        <Text>{item.name}</Text>
-      </View>
-    );
+    return <Event event={item} />;
   }
 
   renderEmptyDate() {

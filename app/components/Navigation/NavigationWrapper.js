@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
 import {Header, Body, Title, Container, Left, Button, Right} from 'native-base';
+import CustomTheme from '../../utils/Theme/Theme';
 import Icon from 'react-native-vector-icons/Ionicons';
 Icon.loadFont();
 
@@ -9,14 +10,14 @@ const NavigationWrapper = ({defaultTitle, constent: Content}) => {
   return (
     <Container>
       <Header style={styles.headerColor}>
-        <StatusBar backgroundColor="#313640" />
+        <StatusBar backgroundColor={CustomTheme.default} />
         <Left>
           <Button transparent>
-            <Icon name="ios-cube" color="#e91e63" size={26} />
+            <Icon name="ios-cube" color={CustomTheme.primary} size={26} />
           </Button>
         </Left>
         <Body>
-          <Title>{title}</Title>
+          <Title style={{color: CustomTheme.textColor}}>{title}</Title>
         </Body>
         <Right />
       </Header>
@@ -27,8 +28,8 @@ const NavigationWrapper = ({defaultTitle, constent: Content}) => {
 
 const styles = StyleSheet.create({
   headerColor: {
-    backgroundColor: '#313640',
-    color: 'white',
+    backgroundColor: CustomTheme.default,
+    color: CustomTheme.default,
   },
 });
 

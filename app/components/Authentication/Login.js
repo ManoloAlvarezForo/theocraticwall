@@ -10,12 +10,14 @@ import CustomInput from '../Input/CustomInput/CustomInput';
 import Icon from 'react-native-vector-icons/Feather';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {ScrollView} from 'react-native-gesture-handler';
+import CustomTheme from '../../utils/Theme/Theme';
+
 Icon.loadFont();
 Ionicon.loadFont();
 
 const Login = ({navigation}) => {
-  const [email, setEmail] = useState('manolo@manolo.com');
-  const [password, setPassword] = useState('manolo');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [login] = useMutation(LOGIN, {
     variables: {email, password},
     onCompleted: data => {
@@ -29,14 +31,14 @@ const Login = ({navigation}) => {
     navigation.navigate('App');
   };
 
-  const fakeconfirm = () => {
-    navigation.navigate('App');
-  };
+  // const fakeconfirm = () => {
+  //   navigation.navigate('App');
+  // };
 
   return (
     <ScrollView style={styles.container}>
       <Container padded style={styles.backgroundColorContent}>
-        <StatusBar backgroundColor="#313640" />
+        <StatusBar backgroundColor={CustomTheme.default} />
         <View
           style={{
             flex: 2,
@@ -45,8 +47,9 @@ const Login = ({navigation}) => {
             alignContent: 'center',
             alignItems: 'center',
           }}>
-          <Ionicon name="ios-cube" color="#e91e63" size={122} />
-          <Text style={{margin: 10, color: 'white', fontSize: 28}}>
+          <Ionicon name="ios-cube" color={CustomTheme.primary} size={122} />
+          <Text
+            style={{margin: 10, color: CustomTheme.textColor, fontSize: 28}}>
             Theocratic Wall
           </Text>
         </View>
@@ -63,10 +66,10 @@ const Login = ({navigation}) => {
             <CustomInput
               style={{flex: 9}}
               dark
-              labelBackgroundColor="#313640"
+              labelBackgroundColor={CustomTheme.default}
               label={'Email'}
-              customBorderColor={'#FF006E'}
-              labelStyle={{color: '#FF006E'}}
+              customBorderColor={CustomTheme.primary}
+              labelStyle={{color: CustomTheme.primary}}
               onChangeText={value => setEmail(value)}
             />
           </View>
@@ -89,9 +92,9 @@ const Login = ({navigation}) => {
               style={{flex: 9}}
               dark
               label={'Password'}
-              labelBackgroundColor="#313640"
-              customBorderColor={'#FF006E'}
-              labelStyle={{color: '#FF006E'}}
+              labelBackgroundColor={CustomTheme.default}
+              customBorderColor={CustomTheme.primary}
+              labelStyle={{color: CustomTheme.primary}}
               isPassword={true}
               onChangeText={value => setPassword(value)}
             />
@@ -105,11 +108,11 @@ const Login = ({navigation}) => {
             flexDirection: 'row',
           }}>
           <Button
-            style={{flex: 1, width: 100}}
             block
-            onPress={fakeconfirm}
-            backgroundColor="#e91e63">
-            <TextBase>Login</TextBase>
+            style={{flex: 1, width: 100, marginRight: 2}}
+            onPress={login}
+            backgroundColor={CustomTheme.primary}>
+            <TextBase>Acceder</TextBase>
           </Button>
         </View>
       </Container>
@@ -122,13 +125,16 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingLeft: 5,
     paddingRight: 5,
+    flexDirection: 'column',
     height: 100,
-    backgroundColor: '#313640',
+    backgroundColor: CustomTheme.default,
   },
   backgroundColorContent: {
-    backgroundColor: '#313640',
+    backgroundColor: CustomTheme.default,
   },
-  content: {},
+  buttonColor: {
+    color: CustomTheme.primary,
+  },
 });
 
 export default Login;
