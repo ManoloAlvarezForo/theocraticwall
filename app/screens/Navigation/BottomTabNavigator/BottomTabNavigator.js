@@ -1,22 +1,25 @@
-/* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
-import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-
-import Home from '../../../components/Home/Home';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import Dashboard from '../../../components/Dashboard/Dashboard';
 import Events from '../../../components/Events/Events';
-import Profile from '../../../components/Profile/Profile';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
-Icon.loadFont();
+import Settings from '../../../components/Settings/Settings';
+import Territories from '../../../components/Territories/Territories';
+import CustomTheme from '../../../utils/Theme/Theme';
 
-export default createMaterialBottomTabNavigator(
+import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+IconSimpleLineIcons.loadFont();
+
+const ICON_SIZE = 20;
+
+export default createBottomTabNavigator(
   {
-    Home: {
-      screen: Home,
+    Dashboard: {
+      screen: Dashboard,
       title: 'Inicio',
       navigationOptions: {
-        tabBarLabel: 'Inicio',
+        tabBarLabel: 'Dashboard',
         tabBarIcon: ({tintColor}) => (
-          <Icon name="home" color={tintColor} size={22} />
+          <IconSimpleLineIcons name="grid" color={tintColor} size={ICON_SIZE} />
         ),
       },
     },
@@ -26,34 +29,55 @@ export default createMaterialBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Eventos',
         tabBarIcon: ({tintColor}) => (
-          <Icon name="calendar" color={tintColor} size={22} />
+          <IconSimpleLineIcons
+            name="calendar"
+            color={tintColor}
+            size={ICON_SIZE}
+          />
         ),
       },
     },
-    Profile: {
-      screen: Profile,
-      title: 'Perfil de Usuario',
+    Territories: {
+      screen: Territories,
+      title: 'Territorios',
       navigationOptions: {
-        tabBarLabel: 'Perfil',
+        tabBarLabel: 'Territorios',
         tabBarIcon: ({tintColor}) => (
-          <Icon name="user" color={tintColor} size={22} />
+          <IconSimpleLineIcons
+            name="location-pin"
+            color={tintColor}
+            size={ICON_SIZE}
+          />
+        ),
+      },
+    },
+    Settings: {
+      screen: Settings,
+      title: 'Ajustes',
+      navigationOptions: {
+        tabBarLabel: 'Ajustes',
+        tabBarIcon: ({tintColor}) => (
+          <IconSimpleLineIcons
+            name="settings"
+            color={tintColor}
+            size={ICON_SIZE}
+          />
         ),
       },
     },
   },
   {
-    initialRouteName: 'Home',
-    activeTintColor: 'white',
-    inactiveColor: '#313640',
-    barStyle: {backgroundColor: '#313640'},
-    shifting: true,
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#f4511e',
+    initialRouteName: 'Dashboard',
+    swipeEnabled: true,
+    tabBarOptions: {
+      inactiveColor: CustomTheme.paper,
+      activeTintColor: CustomTheme.textColor,
+      labelStyle: {
+        fontSize: 13,
+        // fontWeight: '700',
       },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
+      style: {
+        backgroundColor: CustomTheme.default,
       },
     },
   },
