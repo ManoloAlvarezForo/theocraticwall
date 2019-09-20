@@ -1,23 +1,13 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
 MapboxGL.setAccessToken(
   'pk.eyJ1IjoibWFub2xvYWx2YXJlemZvcm8iLCJhIjoiY2pyd21tZDZ0MGVkNDQ0bXRvMjdtM3prNCJ9.DmEYBaoUdgwPT5YbM08ygQ',
 );
 
-const CENTER_TERRITORIE = [-66.176102, -17.387183];
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  map: {
-    flex: 1,
-  },
-});
+const CENTER_TERRITORY = [-66.176102, -17.387183];
+const MAP_STYLE = 'mapbox://styles/manoloalvarezforo/ck0ijwl8z077u1cr3xdgk5ip4';
 
 const ShowMap = () => {
   useEffect(() => {
@@ -29,12 +19,20 @@ const ShowMap = () => {
         showUserLocation={true}
         animated={true}
         zoomEnabled={true}
+        logoEnabled={false}
         rotateEnabled={true}
-        style={styles.map}>
-        <MapboxGL.Camera centerCoordinate={CENTER_TERRITORIE} zoomLevel={15} />
+        styleURL={MAP_STYLE}
+        style={styles.container}>
+        <MapboxGL.Camera centerCoordinate={CENTER_TERRITORY} zoomLevel={15} />
       </MapboxGL.MapView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default ShowMap;

@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Agenda} from 'react-native-calendars';

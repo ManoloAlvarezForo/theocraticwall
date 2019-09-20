@@ -5,7 +5,7 @@ import {useMutation} from '@apollo/react-hooks';
 import {StyleSheet, View, StatusBar, Text} from 'react-native';
 import {Form, Button, Container, Text as TextBase} from 'native-base';
 
-import {saveToken} from '../../utils/authentication';
+import {saveUserInformation} from '../../utils/asyncStorageHandler';
 import CustomInput from '../Input/CustomInput/CustomInput';
 import Icon from 'react-native-vector-icons/Feather';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -26,8 +26,8 @@ const Login = ({navigation}) => {
   });
 
   const confirm = async dataParam => {
-    const token = dataParam.login.token;
-    saveToken(token);
+    const {token, user} = dataParam.login;
+    saveUserInformation(token, user);
     navigation.navigate('App');
   };
 

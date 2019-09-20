@@ -4,8 +4,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 // Screens.
 import AuthLoadingScreen from '../../components/Authentication/AuthLoadingScreen';
 // import DrawerNavigator from '../Navigation/DrawerNavigator/DrawerNavigator';
-// import MaterialBottomTabNavigator from './MaterialBottomTabNavigator/MaterialBottomTabNavigator';
-import BottomTabNavigator from './BottomTabNavigator/BottomTabNavigator';
+import MaterialBottomTabNavigator from './MaterialBottomTabNavigator/MaterialBottomTabNavigator';
+// import BottomTabNavigator from './BottomTabNavigator/BottomTabNavigator';
 
 import LoginScreen from '../../components/Authentication/Login';
 
@@ -32,7 +32,7 @@ const AuthStack = createStackNavigator(
 
 const switchNavigator = createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
-  App: BottomTabNavigator,
+  App: MaterialBottomTabNavigator,
   Auth: AuthStack,
 });
 
