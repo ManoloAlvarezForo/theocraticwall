@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import Dashboard from '../../../components/Dashboard/Dashboard';
+import Recent from '../../../components/Recent/Recent';
 import Events from '../../../components/Events/Events';
 // import Settings from '../../../components/Settings/Settings';
 import Territories from '../../../components/Territories/Territories';
@@ -10,17 +10,19 @@ import CustomTheme from '../../../utils/Theme/Theme';
 import IconNotification from '../../../components/Notifications/IconNotification';
 
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import {Root} from 'native-base';
+import {createAppContainer} from 'react-navigation';
 IconSimpleLineIcons.loadFont();
 
 const ICON_SIZE = 24;
 
-export default createMaterialBottomTabNavigator(
+const MaterialNavigator = createMaterialBottomTabNavigator(
   {
-    Dashboard: {
-      screen: Dashboard,
+    Recent: {
+      screen: Recent,
       title: 'Inicio',
       navigationOptions: {
-        tabBarLabel: 'Dashboard',
+        tabBarLabel: 'Proximos',
         tabBarIcon: ({tintColor}) => (
           <IconSimpleLineIcons name="grid" color={tintColor} size={ICON_SIZE} />
         ),
@@ -84,10 +86,20 @@ export default createMaterialBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Dashboard',
-    activeTintColor: CustomTheme.textColor,
-    inactiveColor: CustomTheme.default,
-    barStyle: {backgroundColor: CustomTheme.default},
+    initialRouteName: 'Recent',
+    activeTintColor: CustomTheme.textBlackColor,
+    inactiveColor: '#737272',
+    barStyle: {backgroundColor: CustomTheme.secondaryMain},
     shifting: true,
   },
 );
+
+const Material = createAppContainer(MaterialNavigator);
+const MaterialNavigatorRoot = () => {
+  return (
+    <Root>
+      <Material />
+    </Root>
+  );
+};
+export default MaterialNavigatorRoot;

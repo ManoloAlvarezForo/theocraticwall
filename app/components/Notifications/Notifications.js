@@ -14,7 +14,7 @@ const Notifications = () => {
   return (
     <NavigationWrapper
       defaultTitle="Notificaciones"
-      constent={NotificationsContent}
+      content={NotificationsContent}
     />
   );
 };

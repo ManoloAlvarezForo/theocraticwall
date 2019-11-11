@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Badge, Text} from 'native-base';
-import Dashboard from '../../../components/Dashboard/Dashboard';
+import Recent from '../../../components/Recent/Recent';
 import Events from '../../../components/Events/Events';
 // import Settings from '../../../components/Settings/Settings';
 import Territories from '../../../components/Territories/Territories';
@@ -15,11 +15,11 @@ const ICON_SIZE = 20;
 
 export default createBottomTabNavigator(
   {
-    Dashboard: {
-      screen: Dashboard,
+    Recent: {
+      screen: Recent,
       title: 'Inicio',
       navigationOptions: {
-        tabBarLabel: 'Dashboard',
+        tabBarLabel: 'Recientes',
         tabBarIcon: ({tintColor}) => (
           <IconSimpleLineIcons name="grid" color={tintColor} size={ICON_SIZE} />
         ),
@@ -86,7 +86,7 @@ export default createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'Recent',
     swipeEnabled: true,
     tabBarOptions: {
       inactiveColor: CustomTheme.paper,

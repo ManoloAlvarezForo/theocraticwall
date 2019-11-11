@@ -11,9 +11,7 @@ const SettingsContent = () => {
 };
 
 const Settings = () => {
-  return (
-    <NavigationWrapper defaultTitle="Ajustes" constent={SettingsContent} />
-  );
+  return <NavigationWrapper defaultTitle="Ajustes" content={SettingsContent} />;
 };
 
 export default Settings;
