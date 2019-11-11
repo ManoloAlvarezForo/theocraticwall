@@ -1,13 +1,9 @@
 import React from 'react';
-import {Content, Text} from 'native-base';
 import NavigationWrapper from '../Navigation/NavigationWrapper';
+import ShowMap from './Maps';
 
 const TerritoriesContent = () => {
-  return (
-    <Content padder>
-      <Text>Territories under construction</Text>
-    </Content>
-  );
+  return <ShowMap />;
 };
 
 const Territories = () => {

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
 
-import {getToken} from '../../utils/authentication';
+import {getToken} from '../../utils/asyncStorageHandler';
 
 const AuthLoadingScreen = ({navigation}) => {
   useEffect(() => {
