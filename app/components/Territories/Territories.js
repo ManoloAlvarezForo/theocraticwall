@@ -10,7 +10,7 @@ const Territories = () => {
   return (
     <NavigationWrapper
       defaultTitle="Territorios"
-      constent={TerritoriesContent}
+      content={TerritoriesContent}
     />
   );
 };

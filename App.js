@@ -22,6 +22,11 @@ import {getToken} from './app/utils/asyncStorageHandler';
 import Navigation from './app/screens/Navigation/Navigation';
 import {GRAPHQL_URL} from './app/utils/communication';
 import introspectionQueryResultData from './app/fragmentTypes.json';
+import AsyncStorage from '@react-native-community/async-storage';
+import {persistCache} from 'apollo-cache-persist';
+import {RetryLink} from 'apollo-link-retry';
+
+const retryLink = new RetryLink();
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
@@ -70,9 +75,16 @@ const link = split(
   },
   wsLink,
   httpLink,
+  retryLink,
 );
 
 const cache = new InMemoryCache({fragmentMatcher});
+
+persistCache({
+  cache,
+  storage: AsyncStorage,
+  trigger: 'background',
+});
 
 const client = new ApolloClient({
   link: authLink.concat(link),
