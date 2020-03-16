@@ -8,10 +8,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ModalDetail from '../Modal/ModalDetail';
 import EventDetail from './EventDetail';
 import {GET_ALL_EVENTS} from './EventsQueries';
-import {useQuery} from 'react-apollo';
-import {Button, Text, Spinner, Toast} from 'native-base';
+import {useQuery} from '@apollo/client';
+import {Button, Spinner, Toast} from 'native-base';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Theme from '../../utils/Theme/Theme';
+import {getColorEvent} from './EventUtil';
 import {getEventsDataForAgenda} from './CalendarUtils';
 IconSimpleLineIcons.loadFont();
 Icon.loadFont();
@@ -19,8 +20,10 @@ Icon.loadFont();
 const EventsContent = ({setTitle, allEvents = [], loading}) => {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
+  const [modalHeaderColor, setModalHeaderColor] = useState('');
 
   const buildModalDetail = event => {
+    setModalHeaderColor(getColorEvent(event.moment));
     setModalContent(<EventDetail event={event} />);
     setIsVisibleModal(true);
   };
@@ -37,6 +40,7 @@ const EventsContent = ({setTitle, allEvents = [], loading}) => {
         modalVisible={isVisibleModal}
         setModalVisible={setIsVisibleModal}
         content={modalContent}
+        headerColor={modalHeaderColor}
       />
     </React.Fragment>
   );

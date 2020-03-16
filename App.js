@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -7,13 +8,14 @@
  */
 
 import React from 'react';
-import {ApolloClient} from 'apollo-client';
 import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
   InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from 'apollo-cache-inmemory';
-import {HttpLink} from 'apollo-link-http';
-import {ApolloProvider} from '@apollo/react-hooks';
+} from '@apollo/client';
+import {IntrospectionFragmentMatcher} from 'apollo-cache-inmemory';
+// import {ApolloProvider} from '@apollo/react-hooks';
 import {split} from 'apollo-link';
 import {WebSocketLink} from 'apollo-link-ws';
 import {getMainDefinition} from 'apollo-utilities';
@@ -78,7 +80,35 @@ const link = split(
   retryLink,
 );
 
-const cache = new InMemoryCache({fragmentMatcher});
+const inMemoryOptions = {
+  addTypename: true,
+  resultCaching: true,
+  typePolicies: {
+    Query: {
+      fields: {
+        recentEvents: {
+          read(existing, {args, toReference}) {
+            if (existing) {
+              return existing;
+            }
+          },
+        },
+        allEvents: {
+          read(existing, {args, toReference}) {
+            if (existing) {
+              return existing;
+            }
+          },
+        },
+      },
+    },
+  },
+};
+
+const cache = new InMemoryCache({
+  ...fragmentMatcher,
+  ...inMemoryOptions,
+});
 
 persistCache({
   cache,
@@ -88,7 +118,7 @@ persistCache({
 
 const client = new ApolloClient({
   link: authLink.concat(link),
-  cache,
+  cache: cache,
 });
 
 const App = () => {

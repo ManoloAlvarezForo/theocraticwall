@@ -1,62 +1,59 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {Card, CardItem, Body, View} from 'native-base';
-import Theme from '../../utils/Theme/Theme';
+import {View} from 'native-base';
+
+// Constants
 const LEAD_LABEL = 'Conductor';
-const LEAD_HEADER_COLOR = '#00bcd4';
-
 const LOCATION_LABEL = 'Lugar';
-const LOCATION_HEADER_COLOR = '#cddc39';
-
 const DATE_AND_TIME_LABEL = 'Fecha y Hora';
-const DATE_AND_TIME_HEADER_COLOR = '#457092';
-
 const TERRITORIES_LABEL = 'Territorios';
-const TERRITORIES_HEADER_COLOR = '#03a9f4';
-
 const DESCRIPTION_LABEL = 'Recomendaciones';
-const DESCRIPTION_HEADER_COLOR = '#f98865';
+
+// const LEAD_HEADER_COLOR = '#00bcd4';
+// const LOCATION_HEADER_COLOR = '#cddc39';
+// const DATE_AND_TIME_HEADER_COLOR = '#457092';
+// const TERRITORIES_HEADER_COLOR = '#03a9f4';
+// const DESCRIPTION_HEADER_COLOR = '#f98865';
+
 const EventDetailItem = ({event}) => {
   // const newHeaderStyle = {
   //   ...styles.cardItemHeaderText,
   //   backgroundColor: headerColor,
   // };
   return (
-    <Card style={styles.cardContainer}>
-      <CardItem style={styles.cardItemBody}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            marginTop: 5,
-            marginBottom: 5,
-          }}>
-          <View style={styles.contentItem}>
-            <Text style={styles.title}>{LOCATION_LABEL}</Text>
-            <Text style={styles.text}>{event.location}</Text>
-          </View>
-          <View style={styles.contentItem}>
-            <Text style={styles.title}>{LEAD_LABEL}</Text>
-            <Text style={styles.text}>{event.lead}</Text>
-          </View>
-          <View style={styles.contentItem}>
-            <Text style={styles.title}>{DATE_AND_TIME_LABEL}</Text>
-            <Text style={styles.text}>
-              {`${event.date} - ${event.time} - ${event.moment}`}
-            </Text>
-          </View>
-          <View style={styles.contentItem}>
-            <Text style={styles.title}>{TERRITORIES_LABEL}</Text>
-            <Text style={styles.text}>{event.territories}</Text>
-          </View>
-          <View style={styles.contentItem}>
-            <Text style={styles.title}>{DESCRIPTION_LABEL}</Text>
-            <Text style={styles.text}>{event.description}</Text>
-          </View>
-        </View>
-      </CardItem>
-    </Card>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+        marginTop: 5,
+        marginBottom: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+      }}>
+      <View style={styles.contentItem}>
+        <Text style={styles.title}>{LOCATION_LABEL}</Text>
+        <Text style={styles.text}>{event.location}</Text>
+      </View>
+      <View style={styles.contentItem}>
+        <Text style={styles.title}>{LEAD_LABEL}</Text>
+        <Text style={styles.text}>{event.lead}</Text>
+      </View>
+      <View style={styles.contentItem}>
+        <Text style={styles.title}>{DATE_AND_TIME_LABEL}</Text>
+        <Text style={styles.text}>
+          {`${event.date} - ${event.time} - ${event.moment}`}
+        </Text>
+      </View>
+      <View style={styles.contentItem}>
+        <Text style={styles.title}>{TERRITORIES_LABEL}</Text>
+        <Text style={styles.text}>{event.territories}</Text>
+      </View>
+      <View style={styles.contentItem}>
+        <Text style={styles.title}>{DESCRIPTION_LABEL}</Text>
+        <Text style={styles.text}>{event.description}</Text>
+      </View>
+    </View>
   );
 };
 

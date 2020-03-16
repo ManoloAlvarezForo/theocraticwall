@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from '@apollo/client';
 
 export const RECENT_EVENTS = gql`
   query recentEvents($today: String) {

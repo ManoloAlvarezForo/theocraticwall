@@ -5,13 +5,17 @@ import Modal from 'react-native-modal';
 import {Button} from 'native-base';
 import {Text, View} from 'react-native';
 import Theme from '../../utils/Theme/Theme';
+import IoniconsIcons from 'react-native-vector-icons/Ionicons';
+IoniconsIcons.loadFont();
 
 const ModalDetail = ({
   modalVisible,
   setModalVisible,
   content,
   title = 'Predicacion',
+  headerColor = '#03a9f4',
 }) => {
+  const newHeaderColor = {...styles.header, backgroundColor: headerColor};
   return (
     <View>
       <Modal
@@ -21,33 +25,20 @@ const ModalDetail = ({
           setModalVisible(!modalVisible);
         }}>
         <View style={styles.content}>
-          <View style={styles.header}>
+          <View style={newHeaderColor}>
             <Text style={styles.headerTitle}>{title}</Text>
+            <View style={{height: 36, width: 32}}>
+              <Button
+                transparent
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                <IoniconsIcons name="ios-close" size={36} color="white" />
+              </Button>
+            </View>
           </View>
           <View style={styles.body}>{content}</View>
-          <View style={styles.footer}>
-            <Button
-              transparent
-              style={{
-                flex: 1,
-                marginLeft: 'auto',
-                marginRight: 2,
-                marginBottom: 13,
-              }}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}>
-              <Text
-                style={{
-                  color: 'black',
-                  padding: 10,
-                  fontSize: 16,
-                  fontWeight: '700',
-                }}>
-                Close
-              </Text>
-            </Button>
-          </View>
+          <View style={styles.footer} />
         </View>
       </Modal>
     </View>
@@ -64,18 +55,22 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   header: {
-    backgroundColor: Theme.secondaryMain,
-    height: 40,
-    padding: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
-    flex: 0,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerTitle: {
-    color: Theme.textBlackColor,
+    color: '#f1f1f1',
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'center',
+    flex: 1,
+    flexDirection: 'row',
   },
   body: {flex: 9},
   footer: {

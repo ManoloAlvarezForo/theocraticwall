@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
@@ -7,12 +8,17 @@ import {Content, Text, Spinner, Button, Toast} from 'native-base';
 import Event from '../Events/Event';
 import NavigationWrapper from '../Navigation/NavigationWrapper';
 import {RECENT_EVENTS} from '../Events/EventsQueries';
-import {useQuery} from 'react-apollo';
+import {useQuery} from '@apollo/client';
 import Theme from '../../utils/Theme/Theme';
 import ModalDetail from '../Modal/ModalDetail';
 import EventDetail from '../Events/EventDetail';
+import {getColorEvent} from '../Events/EventUtil';
+
+//Language
 import moment from 'moment';
 import ESLocale from 'moment/locale/es';
+
+//Icons
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 Icon.loadFont();
@@ -23,6 +29,8 @@ moment.locale('es', ESLocale);
 const EventRecentContent = ({recentEvents}) => {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
+  const [modalHeaderColor, setModalHeaderColor] = useState({});
+
   const sections = recentEvents.map(section => {
     let newTitle = '';
     const dateCurrent = moment().format('YYYY-MM-DD');
@@ -40,6 +48,7 @@ const EventRecentContent = ({recentEvents}) => {
   });
 
   const buildModalDetail = event => {
+    setModalHeaderColor(getColorEvent(event.moment));
     setModalContent(<EventDetail event={event} />);
     setIsVisibleModal(true);
   };
@@ -67,6 +76,7 @@ const EventRecentContent = ({recentEvents}) => {
         modalVisible={isVisibleModal}
         setModalVisible={setIsVisibleModal}
         content={modalContent}
+        headerColor={modalHeaderColor}
       />
     </Content>
   );
@@ -74,10 +84,13 @@ const EventRecentContent = ({recentEvents}) => {
 
 const Recent = () => {
   const [today] = useState(moment().format('YYYY-MM-DD'));
-  const {loading, error, data, refetch} = useQuery(RECENT_EVENTS, {
+  const {loading, data = {}, refetch} = useQuery(RECENT_EVENTS, {
     variables: {today},
+    skip: !today,
+    errorPolicy: 'none',
     fetchPolicy: 'cache-first',
   });
+
 
   const SpinnerLoading = () => {
     return (
@@ -102,7 +115,7 @@ const Recent = () => {
           variables: {
             today,
           },
-          fetchPolicy: 'cache-and-network',
+          fetchPolicy: 'network-only',
         });
       } else {
         Toast.show({
@@ -135,7 +148,19 @@ const Recent = () => {
   // }
 
   const RecentEvents = () => {
-    return <EventRecentContent recentEvents={data.recentEvents} />;
+    // let events;
+    // alert('recentEvent');
+    //  if (data.recentEvents === undefined) {
+    //     const newData = client.readQuery({
+    //     query: RECENT_EVENTS,
+    //     variables: {today},
+    //   });
+    //   events = newData.recentEvents;
+    //  } else {
+    //      events = data.recentEvents;
+    //  }
+    const {recentEvents} = data;
+    return <EventRecentContent recentEvents={recentEvents} />;
   };
 
   return (

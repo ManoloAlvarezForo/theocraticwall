@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {LOGIN} from './AuthenticationMutations';
-import {useMutation} from '@apollo/react-hooks';
+import {useMutation} from '@apollo/client';
 import {StyleSheet, View, StatusBar, Text} from 'react-native';
 import {Form, Button, Container, Text as TextBase} from 'native-base';
 
